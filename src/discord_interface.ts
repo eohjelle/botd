@@ -1,5 +1,5 @@
 import { Bot } from './bot';
-import { REST, Routes, Client, Message, Channel, ChannelType } from 'discord.js';
+import { REST, Routes, Client, Message, Channel, ChannelType, DiscordAPIError } from 'discord.js';
 import schedule from 'node-schedule';
 import { DBInterface } from './database';
 
@@ -327,6 +327,14 @@ export class DiscordInterface {
               channel.send(response.content);
             }
           });
+        }
+      }).catch(async error => {
+        if (error instanceof DiscordAPIError && error.message === 'Unknown Channel') {
+          console.log(`Channel ${channelId} not found, removing from subscriber list.`);
+          await this.db.upsertChannel({ channel_id: channelId, subscribed: false });
+          this.subscriberChannels = this.subscriberChannels.filter(id => id !== channelId);
+        } else {
+          console.error(`Error broadcasting motivation for channel ${channelId}:`, error);
         }
       });
     }));
