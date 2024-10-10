@@ -381,7 +381,7 @@ export class Bot {
 
     private formatBrainteaserOfTheDay(brainteaser: BrainteaserOfTheDay) {
         // const dateString = new Date(brainteaser.date_of).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        return `**Brainteaser of the Day #${brainteaser.id}: ${brainteaser.title}**\n\n${brainteaser.question}\n\n*Submitted by: ${brainteaser.submitted_by}*`;
+        return `**Brainteaser of the Day #${brainteaser.id}: ${brainteaser.title}**\n\n${brainteaser.question}\n\n*Submitted by ${brainteaser.submitted_by}*`;
     }
 
     public async getCurrentBrainteaserOfTheDay() {
