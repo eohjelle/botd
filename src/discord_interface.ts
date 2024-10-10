@@ -328,15 +328,7 @@ export class DiscordInterface {
             }
           });
         }
-      }).catch(async error => {
-        if (error instanceof DiscordAPIError && error.message === 'Unknown Channel') {
-          console.log(`Channel ${channelId} not found, removing from subscriber list.`);
-          await this.db.upsertChannel({ channel_id: channelId, subscribed: false });
-          this.subscriberChannels = this.subscriberChannels.filter(id => id !== channelId);
-        } else {
-          console.error(`Error broadcasting motivation for channel ${channelId}:`, error);
-        }
-      });
+      })
     }));
   }
 
@@ -350,7 +342,12 @@ export class DiscordInterface {
         throw new Error(`Channel ${channelId} is not a text-based channel`);
       }
     } catch (error) {
-      console.error(`Error fetching messages for channel ${channelId}:`, error);
+      if (error instanceof DiscordAPIError && error.message === 'Unknown Channel') {
+        console.log(`Channel ${channelId} is not a valid channel. Unsubscribing...`);
+        await this.db.upsertChannel({ channel_id: channelId, subscribed: false });
+      } else {
+        console.error(`Error fetching messages for channel ${channelId}:`, error);
+      }
       return [];
     }
   }
