@@ -232,4 +232,9 @@ export class DBInterface {
     public async getSubscribedChannelIds(): Promise<string[]> {
         return await this.sql`SELECT channel_id FROM channels WHERE subscribed = TRUE`.then(data => data.map(row => row.channel_id));
     }
+
+    public async getBrainteasersLeft(): Promise<string> {
+        const brainteasersLeft = await this.sql`SELECT COUNT(*) FROM brainteasers WHERE used_for_botd IS NULL`;
+        return `Brainteasers left: ${brainteasersLeft}`;
+    }
 }

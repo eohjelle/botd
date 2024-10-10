@@ -77,10 +77,15 @@ export class DiscordInterface {
           default_member_permissions: '8'
         },
         {
-          name: 'get_leaderboard',
+          name: 'leaderboard',
           description: 'Get the leaderboard of the current channel.',
           type: 1,
           contexts: [0]
+        },
+        {
+          name: 'brainteasers_left',
+          description: 'Get the number of brainteasers left that have not been used for Brainteaser of the Day.',
+          type: 1
         }
       ];
 
@@ -210,7 +215,21 @@ export class DiscordInterface {
             });
           }
         }
-        
+
+        if (commandName === 'brainteasers_left') {
+          await interaction.deferReply({ ephemeral: true });
+          try {
+            const brainteasersLeft = await this.db.getBrainteasersLeft();
+            await interaction.editReply({
+              content: brainteasersLeft
+            });
+          } catch (error) {
+            await interaction.editReply({
+              content: `Error getting brainteasers left: ${error}`
+            });
+          }
+        }
+
         console.log(`Interaction: ${interaction.user.displayName} (${interaction.user.id}) used command ${commandName}!`);
       });
 
