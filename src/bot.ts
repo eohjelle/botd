@@ -309,7 +309,7 @@ export class Bot {
     /** Decides what to do based on the current messages in the chat. */
     async response(chatId: Snowflake, assistantName: string): Promise<MessageResponse> {
         const response = await this.llm.runAssistant(this.threadIds[chatId], await this.assistants[assistantName], this.tools).then(response => JSON.parse(response));
-        console.log(`Responded with action ${response.action}.${response.reason_for_action ? ` Reason for action: ${response.reason_for_action}\n\n` : ''}`);
+        console.log(`\nResponded with action ${response.action}.${response.reason_for_action ? ` Reason for action: ${response.reason_for_action}\n` : ''}`);
         if (response.action === 'do_nothing') {
             return { action: response.action, content: null };
         } else if (response.action === 'react') {
@@ -375,8 +375,7 @@ export class Bot {
             const solution_id = await this.db.insertSolutionToBotd({ botd_id, solution, submitted_by_user_id, submitted_by_user_name });
             return `Successfully submitted solution! Assigned ID: ${solution_id}`;
         } catch (error) {
-            console.error('Error submitting solution: ', error);
-            return `Failed to submit solution due to the following error: ${error}`;
+            throw error;
         }
     }
 

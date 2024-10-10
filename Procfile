@@ -1,2 +1,3 @@
 web: npm run start
-seed: npm run db:seed
+dbseed: npm run db:seed
+dbreset: npm run db:reset

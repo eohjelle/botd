@@ -5,8 +5,8 @@ import { formatDate } from '../utils';
 export class DBInterface {
     private sql: postgres.Sql;
 
-    constructor({ db_url }: { db_url: string }) {
-        this.sql = postgres(db_url); //, { ssl: { rejectUnauthorized: false } });
+    constructor({ dbUrl, dbOptions }: { dbUrl: string, dbOptions?: postgres.Options<any> }) {
+        this.sql = postgres(dbUrl, dbOptions);
     }
 
     /** Warning: This will delete all data. */
@@ -60,8 +60,7 @@ export class DBInterface {
         try {
             await this.sql`INSERT INTO users (user_id, name) VALUES (${user_id}, ${user_name}) ON CONFLICT (user_id) DO NOTHING`;
         } catch (error) {
-            console.error('Error creating user:', error);
-            throw error;
+            throw new Error(`Could not create user ${user_id}. ${error}`);
         }
     }
 
@@ -74,8 +73,7 @@ export class DBInterface {
                 RETURNING id
                 `.then(data => data[0].id);
         } catch (error) {
-            console.error('Error inserting brainteaser:', error);
-            throw error;
+            throw new Error(`Could not insert Brainteaser. ${error}`);
         }
     }
 
@@ -87,17 +85,16 @@ export class DBInterface {
                 RETURNING id`;
             return returnedSolution.id;
         } catch (error) {
-            console.error('Error inserting solution:', error);
-            throw error;
+            throw new Error(`Could not insert solution to Brainteaser with ID=${brainteaser_id}. ${error}`);
         }
     }
 
-    public async updateSolution({ solution_id, solution }: { solution_id: number, solution: string }): Promise<void> {
+    public async updateSolution({ solution_id, solution }: { solution_id: number, solution: string }): Promise<string> {
         try {
             await this.sql`UPDATE solutions SET solution = ${solution} WHERE id = ${solution_id}`;
+            return `Successfully updated solution ${solution_id}!`;
         } catch (error) {
-            console.error('Error updating solution:', error);
-            throw error;
+            throw new Error(`Could not update solution ${solution_id}. ${error}`);
         }
     }
 
@@ -106,8 +103,7 @@ export class DBInterface {
             const solutions = await this.sql`SELECT * FROM solutions WHERE brainteaser_id = ${brainteaser_id} LIMIT ${limit ?? 10}`;
             return solutions.map(solution => ({ id: solution.id, brainteaser_id: solution.brainteaser_id, solution: solution.solution, submitted_by: solution.submitted_by }));
         } catch (error) {
-            console.error('Error looking up solutions:', error);
-            throw error;
+            throw new Error(`Could not look up solutions to Brainteaser with ID=${brainteaser_id}. ${error}`);
         }
     }
 
@@ -116,19 +112,21 @@ export class DBInterface {
             const [ brainteaser ] = await this.sql`SELECT * FROM brainteasers WHERE used_for_botd = ${botd_id}`;
             return await this.lookupSolutions({ brainteaser_id: brainteaser.id });
         } catch (error) {
-            console.error('Error looking up solutions to Brainteaser of the Day:', error);
-            throw error;
+            throw new Error(`Could not look up solutions to Brainteaser of the Day #${botd_id}. ${error}`);
         }
     }
 
     public async lookupSolutionsToCurrentBrainteaserOfTheDay(): Promise<Solution[]> {
         try {
             const [ botd ] = await this.sql`SELECT brainteaser_id FROM botd ORDER BY id DESC LIMIT 1`;
-            const solutions = await this.lookupSolutions({ brainteaser_id: botd.brainteaser_id });
-            return solutions;
+            if (!(botd === undefined)) {
+                const solutions = await this.lookupSolutions({ brainteaser_id: botd.brainteaser_id });
+                return solutions;
+            } else {
+                throw new Error('No Brainteaser of the Day has been set yet.');
+            }
         } catch (error) {
-            console.error('Error looking up solutions to current Brainteaser of the Day:', error);
-            throw error;
+            throw new Error(`Could not look up solutions to the current Brainteaser of the Day. ${error}`);
         }
     }
 
@@ -138,8 +136,7 @@ export class DBInterface {
             const [ brainteaser ] = await this.sql`SELECT id FROM brainteasers WHERE used_for_botd = ${botd_id}`;
             return await this.insertSolution({ brainteaser_id: brainteaser.id, solution, submitted_by: user_id });
         } catch (error) {
-            console.error('Error inserting solution to botd:', error);
-            throw error;
+            throw new Error(`Could not insert solution to Brainteaser of the Day #${botd_id}. This typically happens when botd_id is an invalid ID for a Brainteaser of the Day. Please check if your are using the correct ID. You can find the ID=X of the current Brainteaser of the Day by looking for the latest message that starts with "Brainteaser of the Day #X".`);
         }
     }
 
@@ -151,8 +148,7 @@ export class DBInterface {
             }
             return botd as BrainteaserOfTheDay;
         } catch (error) {
-            console.error('Error getting Brainteaser of the Day by ID:', error);
-            throw error;
+            throw new Error(`Could not get Brainteaser of the Day #${botd_id}. ${error}`);
         }
     }
 
@@ -161,8 +157,7 @@ export class DBInterface {
             const [ botd ] = await this.sql`SELECT * FROM botd_brainteasers WHERE date_of = ${formatDate(date)}`;
             return botd as BrainteaserOfTheDay;
         } catch (error) {
-            console.error('Error getting Brainteaser of the Day by date:', error);
-            throw error;
+            throw new Error(`Could not get Brainteaser of the Day for date ${formatDate(date)}. ${error}`);
         }
     }
 
@@ -175,8 +170,7 @@ export class DBInterface {
                 return botd as BrainteaserOfTheDay;
             }
         } catch (error) {
-            console.error('Error getting current Brainteaser of the Day:', error);
-            throw error;
+            throw new Error(`Could not get current Brainteaser of the Day. ${error}`);
         }
     }
 

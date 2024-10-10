@@ -31,5 +31,6 @@ To set up the bot, follow these steps:
    - `DISCORD_APP_ID`: The ID of your Discord application, which can be found in the developer portal.
    - `DISCORD_TOKEN`: The token of your Discord bot, which can also be found in the developer portal.
    - `DISCORD_PUBLIC_KEY`: The public key of your Discord application, which can also be found in the developer portal.
-4. Run `npm install` and `npm run reset-db` in the root directory to install the dependencies and set up the initial tables in the database.
+   - `NODE_ENV`: Optional. Set to `development` if you do not want to use an SSL connection to the database. I use this to distinguish between local development and deployment on Heroku.
+4. Run `npm install` and `npm run db:seed` in the root directory to install the dependencies and set up the initial tables in the database.
 5. Run `npm run start` in the root directory to start the bot.

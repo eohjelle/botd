@@ -116,7 +116,8 @@ export class LLM {
                                                 output: output
                                             }
                                         } catch (error) {
-                                            console.error(`Error occured while performing call to tool ${tool_call.function.name}`, error);
+                                            console.error(`Error occured while performing call to tool ${tool_call.function.name}: ${error} (this is what the LLM can see)`);
+                                            console.error(`Full error:`, error);
                                             return {
                                                 tool_call_id: tool_call.id,
                                                 output: `Error occured while performing call to tool ${tool_call.function.name}: ${error}`

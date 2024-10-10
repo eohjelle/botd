@@ -16,9 +16,11 @@ const llm = new LLM(openai);
 console.log('Initializing database...');
 import { DBInterface } from './database';
 
-const db = new DBInterface({
-    db_url: process.env.DATABASE_URL
-});
+const dbArgs = process.env.NODE_ENV === 'development' ? 
+    { dbUrl: process.env.DATABASE_URL } : 
+    { dbUrl: process.env.DATABASE_URL, dbOptions: { ssl: { rejectUnauthorized: false } } };
+
+const db = new DBInterface(dbArgs);
 
 // Set up bots
 console.log('Initializing bots...');
