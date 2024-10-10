@@ -1,0 +1,142 @@
+[
+  {
+    "title": "Expected Number of Dice Throws",
+    "question": "If you keep throwing one dice over and over, what's the expected number of throws before you've gotten all different numbers?",
+    "category": "Probability"
+  },
+  {
+    "title": "The Heavier Ball Dilemma",
+    "question": "Suppose you have 9 balls of identical size and appearance. 8 of them have the same weight, and one of them is slightly heavier than the rest. You have a Balance Scale Puzzle, and you can use it to compare the weight of the balls. How can you find the heavier ball with only two uses of the Balance Scale Puzzle?",
+    "category": "Balance Scale Puzzle"
+  },
+  {
+    "title": "Strangers and Friends",
+    "question": "In a party of six people, show that there is a group of 3 who either are strangers or know each other.",
+    "category": "Graph Theory"
+  },
+  {
+    "title": "The Two-Headed Coin Probability",
+    "question": "Suppose a two-headed coin, a two-faced coin, and an ordinary coin are placed in a bag. A coin is drawn at random and flipped. If it comes up heads, what is the probability that the other side of the coin is also heads?",
+    "category": "Probability"
+  },
+  {
+    "title": "Airplane Boarding Chaos",
+    "question": "200 people line up to board an airplane, but the first person has lost their boarding pass and takes a random seat. Each person afterwards takes their seat if available and otherwise a random seat. What is the probability that the last person finds their seat occupied?",
+    "category": "Probability"
+  },
+  {
+    "title": "The Dice Betting Game",
+    "question": "You can bet $1 on a number between 1 and 6. 3 dice are then rolled. If your number doesn’t appear, you lose $1. If it appears once you win $1, if twice $2, and if 3 times $3. Is this bet in your favor?",
+    "category": "Probability"
+  },
+  {
+    "title": "Circle of Light Bulbs",
+    "question": "n light bulbs are in a circle labeled 0 through n-1. Initially they are all on. At time t = 1, 2, … you examine light bulb t (mod n) and if it’s on you change the state of bulb t+1. If it’s off you do nothing. Show that at some point all the light bulbs will be on again.",
+    "category": "Probability"
+  },
+  {
+    "title": "The Attic Light Switch Mystery",
+    "question": "A downstairs panel contains 3 on-off switches, one of which controls a lamp in the attic. Your goal is to find out which one it is while taking no more than one trip to the attic. How?",
+    "category": "Logic"
+  },
+  {
+    "title": "The Positivity Matrix",
+    "question": "Suppose you have a matrix with real numbers and at any time you can reverse all the signs in a row or a column. Can you make it so that all row sums and all column sums are non-negative?",
+    "category": "Algorithms"
+  },
+  {
+    "title": "The Noodle Loop Experiment",
+    "question": "You have 100 noodles in your soup bowl. Being blindfolded you’re told to take two noodle ends and connect them. You continue until there are no free ends. What is the expected number of circles?",
+    "category": "Probability"
+  },
+  {
+    "title": "Soldiers and Surveillance",
+    "question": "An odd number of soldiers are stationed in a field in such a way that pairwise distances are distinct. Each soldier is told to keep an eye on the nearest soldier. Are all soldiers being watched?",
+    "category": "Graph Theory"
+  },
+  {
+    "title": "Efficient Cube Cutting",
+    "question": "A carpenter has a wooden block that he needs to cut into 27 equally sized cubes. This can be done with 6 cuts of the saw blade. Is it possible to use fewer cuts, if you are allowed to rearrange the pieces after each cut?",
+    "category": "Uncategorized"
+  },
+  {
+    "title": "Casper's Tennis Challenge",
+    "question": "Casper is a promising young tennis player. His dad Chris promises him a prize if he can win 2 games in a row in 3 games alternating between himself and the champion Roger at the local club, beginning with the player of Casper’s choosing. So Casper is playing Chris-Roger-Chris or Roger-Chris-Roger. Roger is a better player than Chris. What choice gives Casper the best chance of getting the prize?",
+    "category": "Probability"
+  },
+  {
+    "title": "Alice and Bob's Red Card Bet 1",
+    "question": "Alice shuffles a deck of cards and turns up one at a time. At any time, Bob can interrupt and bet $1 that the next card will be red. If Bob must place exactly one bet, what is his best strategy?",
+    "category": "Probability"
+  },
+  {
+    "title": "Alice and Bob's Red Card Bet 2",
+    "question": "Alice shuffles a deck of cards and turns up one at a time. Before each turn of a card, suppose Bob can bet any amount of his current capital on the color of the next card. If Bob starts with $1, what is the largest amount Bob can guarantee to walk away with?",
+    "category": "Probability"
+  },
+  {
+    "title": "The Ferryboat Meet-Up",
+    "question": "Two ferryboats start at the same instant at opposite sides of a river, traveling in opposite directions orthogonally from the shoreline. They travel at constant speeds, but one is faster than the other. They first meet when they are 720 yards from the closest shore. Both boats stay in their slips for 10 minutes before returning. When they meet again they are 400 yards from the nearest shore. How wide is the river?",
+    "category": "Uncategorized"
+  },
+  {
+    "title": "The Bank Teller's Error",
+    "question": "An absent-minded bank teller switched the dollars and cents when he cashed a check for Mr. Brown, giving him dollars instead of cents, and cents instead of dollars. After buying a five-cent newspaper, Mr. Brown discovered that he had left exactly twice as much as the original check. What was the amount of the check?",
+    "category": "Number Theory"
+  },
+  {
+    "title": "The Weighing Conundrum",
+    "question": "You have 10 stacks of 10 coins. 9 of the stacks contain genuine coins and 1 stack counterfeit coins. You know the weight of the genuine coins and that the counterfeit coins weighs 1 g more than the genuine coins. If you have access to a scale that tells you the weight (so not just a balance), what is the minimum number of weighings needed to determine which stack is counterfeit?",
+    "category": "Balance Scale Puzzle"
+  },
+  {
+    "title": "Red and Black Socks",
+    "question": "There are red and black loose socks in a drawer. What is the minimum number of socks for which the probability of two randomly drawn socks being red is 1/2? What if the number of black socks is even?",
+    "category": "Probability"
+  },
+  {
+    "title": "The Spiraling Bugs",
+    "question": "Four bugs occupy the corners of a square whose sides are 10 inches long. Label them A, B, C, D going clockwise around the square. At time t = 0, bug A starts moving directly towards B, B towards C, C towards D, and D towards A. They all move at the same constant speed. Their paths describe 4 logarithmic spirals that meet at the center of the square. How far does each bug travel before they meet?",
+    "category": "Geometry"
+  },
+  {
+    "title": "Counterfeit Coin Conundrum",
+    "question": "There are 12 coins of identical appearance, one of which is counterfeit. All you know is that the counterfeit coin is of a different weight than the others. You have access to a Balance Scale Puzzle: given two disjoint sets of coins, it tells you whether they are of equal weight or not, and in the latter case which set is heavier than the other one. How many weighings on the Balance Scale Puzzle do you need to determine the counterfeit coin? Bonus: What if there are 40 coins?",
+    "category": "Balance Scale Puzzle"
+  },
+  {
+    "title": "Finding the First Ace",
+    "question": "You are turning over the cards in a shuffled deck, one at a time. What is the expected number of cards you must turn over before finding the first ace?",
+    "category": "Probability"
+  },
+  {
+    "title": "Chessboard Corner Mark",
+    "question": "Alice marks a corner of an n x n chessboard. Then Bob marks an adjacent square. Alice and Bob continue to take turns, each marking a square adjacent to the previous one, until no unmarked adjacent square is available at which time the player whose turn it is loses. For which n does Alice have a winning strategy?",
+    "category": "Chessboard"
+  },
+  {
+    "title": "The Gladiator Strategy Game 1",
+    "question": "Alice and Bob each manage a team of gladiators. Alice’s gladiators have strengths p_1, p_2, …, p_m and Bob’s q_1, q_2, …, q_n. Gladiators fight to the death one against one, and when a gladiator of strength x meets one of strength y, the former wins with probability x/(x+y) and the latter with probability y/(x+y). If the gladiator of strength x wins, he inherits his opponent’s strength so it improves to x+y, and similarly for the other gladiator. Alice starts by putting forward a gladiator and Bob must respond by putting forward one of his own. They continue in this fashion, Alice starting each round, until one team is dead and the winning team remains. What is Bob’s optimal strategy?",
+    "category": "Games"
+  },
+  {
+    "title": "The Gladiator Strategy Game 2",
+    "question": "Alice and Bob each manage a team of gladiators. Alice’s gladiators have strengths p_1, p_2, …, p_m and Bob’s q_1, q_2, …, q_n. Gladiators fight to the death one against one, and when a gladiator of strength x meets one of strength y, the former wins with probability x/(x+y) and the latter with probability y/(x+y). If the gladiator of strength x wins, his strength remains x, and similarly for the other gladiator. Alice starts by putting forward a gladiator and Bob must respond by putting forward one of his own. They continue in this fashion, Alice starting each round, until one team is dead and the winning team remains. What is Bob’s optimal strategy?",
+    "category": "Games"
+  },
+  {
+    "title": "Alice and Bob's Number Guessing Game 1",
+    "question": "Alice writes two different integers on two pieces of paper. Bob chooses one of the papers and looks at the number. Bob has to guess if this is the largest or smallest of the two numbers. If he’s right he gets $1 and if he’s wrong he loses $1. Is there a strategy that allows Bob to do better than breaking even?",
+    "category": "Games"
+  },
+  {
+    "title": "Alice and Bob's Number Guessing Game 2",
+    "question": "Follow up to Bob's Number Guessing Game: Instead of being chosen by Alice, the two numbers are chosen uniformly at random from [0, 1]. To compensate, Alice can choose which number to show Bob. Again, Bob has to guess which number is larger or smaller, with $1 at stake. Can Bob do better than break even?",
+    "category": "Games"
+  },
+  {
+    "title": "Robot Pizza Cutting",
+    "question": "A robot cuts a pizza by randomly picking two points along the circumference and cutting along the chord connecting them. If the robot makes 3 cuts, what is the expected number of pieces of pizza?",
+    "category": "Probability"
+  }
+]
