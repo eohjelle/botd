@@ -1,14 +1,14 @@
 # Brainteaser of the Day bot
 
-This is a Discord bot which posts the Brainteaser of the Day to subscribed channels. Users can submit new brainteasers by sending a DM to the bot, and participants are awarded points for actions in the main channel such as submitting solutions and pointing out mistakes in posted solutions.
+This is a Discord bot which posts a "Brainteaser of the Day" to subscribed channels. Users can submit new brainteasers by sending a DM to the bot, and participants are awarded points for actions in the main channel such as submitting solutions and pointing out mistakes in posted solutions.
 
 ## Simple usage
 
-In a channel, use `/subscribe` to subscribe to the Brainteaser of the Day. The bot will then post a brainteaser in that channel every day. The brainteasers are drawn from a database of brainteasers that is initially empty, but you can add brainteasers to the database by sending a DM to the bot. If there is no brainteaser in the database, the bot will just post an error message.
+In a channel, use `/subscribe` to subscribe to the Brainteaser of the Day. The bot will then post a brainteaser in that channel every day. The brainteasers are drawn from a database of brainteasers that is initially seeded with 28 brainteasers, but you can add brainteasers to the database by sending a DM to the bot. If there is no brainteaser in the database, the bot will just post an error message.
 
 _Note: Populating the database with good brainteasers takes time, but this setup ensures that the brainteasers are of good quality and around the level of difficulty that you are looking for._
 
-There are some additional commands, such as `/leaderboard`, which shows the current leaderboard of users and their points.
+There are some additional commands, such as `/get_leaderboard`, which shows the current leaderboard of users and their points.
 
 ## Setup
 
@@ -34,3 +34,7 @@ To set up the bot, follow these steps:
    - `NODE_ENV`: Optional. Set to `development` if you do not want to use an SSL connection to the database. I use this to distinguish between local development and deployment on Heroku.
 4. Run `npm install` and `npm run db:seed` in the root directory to install the dependencies and set up the initial tables in the database.
 5. Run `npm run start` in the root directory to start the bot.
+
+### Set scheduled tasks
+
+The bot uses the [node-schedule](https://www.npmjs.com/package/node-schedule) package to schedule tasks. These tasks are defined in the `src/discord_interface.ts` file, and you can change the schedule by editing the calls to `scheduleJob` within this file.

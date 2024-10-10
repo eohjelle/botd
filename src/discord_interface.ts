@@ -89,11 +89,11 @@ export class DiscordInterface {
 
         await this.intializeSubscribers();
 
-        schedule.scheduleJob('0 0 * * * *', () => {
+        schedule.scheduleJob('0 0 12 * * *', () => {
           this.broadcastBrainteaserOfTheDay();
         });
 
-        schedule.scheduleJob('0 55 * * * *', () => {
+        schedule.scheduleJob('0 45 11 * * *', () => {
           this.broadcastMotivation();
         });
       });
