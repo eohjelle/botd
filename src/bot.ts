@@ -351,10 +351,9 @@ export class Bot {
             if (submitted_solution) {
                 await this.db.insertSolution({ brainteaser_id, solution: submitted_solution, submitted_by: user_id });
             }
-            return `Successfully submitted brainteaser! Assigned ID: ${brainteaser_id}`;
+            return `Successfully submitted brainteaser titled "${title}"!`;
         } catch (error) {
-            console.error('Error submitting brainteaser: ', error);
-            return `Failed to submit brainteaser due to the following error: ${error}`;
+            throw error;
         }
     }
 
@@ -373,7 +372,7 @@ export class Bot {
         // }
         try {
             const solution_id = await this.db.insertSolutionToBotd({ botd_id, solution, submitted_by_user_id, submitted_by_user_name });
-            return `Successfully submitted solution! Assigned ID: ${solution_id}`;
+            return `Successfully submitted solution to Brainteaser of the Day #${botd_id}! Solution ID: ${solution_id}`;
         } catch (error) {
             throw error;
         }

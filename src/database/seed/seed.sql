@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS brainteasers (
     submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     used_for_botd INTEGER DEFAULT NULL,
     FOREIGN KEY (submitted_by) REFERENCES users(user_id),
-    UNIQUE (id)
+    UNIQUE (id),
+    UNIQUE (title)
 );
 
 CREATE TABLE IF NOT EXISTS solutions (

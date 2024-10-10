@@ -111,6 +111,7 @@ export class LLM {
                                         try {
                                             console.log(`Assistant ${assistantId} is calling tool ${tool_call.function.name} with arguments: ${tool_call.function.arguments}`);
                                             const output = await tools[tool_call.function.name]!(JSON.parse(tool_call.function.arguments));
+                                            console.log(`Tool ${tool_call.function.name} returned: ${output}`);
                                             return {
                                                 tool_call_id: tool_call.id,
                                                 output: output

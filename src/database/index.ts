@@ -73,7 +73,7 @@ export class DBInterface {
                 RETURNING id
                 `.then(data => data[0].id);
         } catch (error) {
-            throw new Error(`Could not insert Brainteaser. ${error}`);
+            throw new Error(`Could not insert brainteaser titled "${title}". This typically happens when a brainteaser with the same title already exists, because you are attempting to submit the same brainteaser multiple times. If you think this is a coincidence, try submitting the brainteaser again with a different title. ${error}`);
         }
     }
 
