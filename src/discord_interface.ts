@@ -234,36 +234,38 @@ export class DiscordInterface {
       });
 
       this.client.on('messageCreate', async message => {
-        console.log(`\n${message.author.displayName} > ${message.content}\n`);
-        await this.bot.addMessage(message.channelId, {
-          channelId: message.channelId,
-          channelName: 'name' in message.channel ? message.channel.name : message.channel.recipient.displayName,
-          fromMe: this.fromMe(message),
-          content: message.content,
-          author: {
-            id: message.author.id,
-            name: message.author.displayName
-          }
-        });
-        if (!this.fromMe(message)) {
-          if (message.channel.type === ChannelType.DM) {
-            await this.activateDMChannel(message.channelId);
-            message.channel.sendTyping();
-            await this.bot.response(message.channelId, 'DM_assistant').then(response => {
-              if (response.action === 'reply') {
-                message.reply(response.content);
-              } else if (response.action === 'react') {
-                message.react(response.content);
-              }
-            });
-          } else if (this.subscriberChannels.includes(message.channelId)) {
-            await this.bot.response(message.channelId, 'moderator').then(response => {
-              if (response.action === 'reply') {
-                message.reply(response.content);
-              } else if (response.action === 'react') {
-                message.react(response.content);
-              }
-            });
+        if (message.channel.type === ChannelType.DM || this.subscriberChannels.includes(message.channelId)) {
+          console.log(`\n${message.author.displayName} > ${message.content}\n`);
+          await this.bot.addMessage(message.channelId, {
+            channelId: message.channelId,
+            channelName: 'name' in message.channel ? message.channel.name : message.channel.recipient.displayName,
+            fromMe: this.fromMe(message),
+            content: message.content,
+            author: {
+              id: message.author.id,
+              name: message.author.displayName
+            }
+          });
+          if (!this.fromMe(message)) {
+            if (message.channel.type === ChannelType.DM) {
+              await this.activateDMChannel(message.channelId);
+              message.channel.sendTyping();
+              await this.bot.response(message.channelId, 'DM_assistant').then(response => {
+                if (response.action === 'reply') {
+                  message.reply(response.content);
+                } else if (response.action === 'react') {
+                  message.react(response.content);
+                }
+              });
+            } else if (this.subscriberChannels.includes(message.channelId)) {
+              await this.bot.response(message.channelId, 'moderator').then(response => {
+                if (response.action === 'reply') {
+                  message.reply(response.content);
+                } else if (response.action === 'react') {
+                  message.react(response.content);
+                }
+              });
+            }
           }
         }
       });
