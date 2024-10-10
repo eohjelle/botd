@@ -234,7 +234,11 @@ export class DBInterface {
     }
 
     public async getBrainteasersLeft(): Promise<string> {
-        const brainteasersLeft = await this.sql`SELECT COUNT(*) FROM brainteasers WHERE used_for_botd IS NULL`;
-        return `Brainteasers left: ${brainteasersLeft}`;
+        const [result] = await this.sql<[{ count: number }]>`
+            SELECT COUNT(*)
+            FROM brainteasers 
+            WHERE used_for_botd IS NULL
+        `;
+        return `Brainteasers left: ${result.count}`;
     }
 }
